@@ -36,27 +36,16 @@ button:focus {
   outline: none;
 }
 
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.container {
-  width: 100vw;
-  height: 100%;
+.wrong-data {
+  font-size: 1.2rem;
+  color: red;
 }
 
 .alert {
-  padding: 0.8rem 2rem;
+  display: block;
+  padding: 0.8rem 0;
   border: 1px solid transparent;
-  position: fixed;
   font-size: 1.1rem;
-  top: 0;
-  left: 0;
   width: 100%;
   z-index: 9999;
 }
@@ -113,12 +102,12 @@ button:focus {
 
 .fullSide .main-container {
   width: 70%;
-  max-width: 900px;
   margin: 0 auto;
   border: 2px solid #2d1e2f;
   -webkit-box-shadow: 11px 9px 15px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 11px 9px 15px 0px rgba(0, 0, 0, 0.75);
   padding: 1rem 2rem;
+  background-color: #eeeeee;
 }
 
 .fullSide .main-container button {
@@ -168,6 +157,7 @@ button:focus {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: 45%;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -219,8 +209,12 @@ button:focus {
   margin: 0 0 1rem 0;
 }
 
+.fullSide .formTemplate article .headerText h3 {
+  color: #31708f;
+}
+
 .fullSide .formTemplate article h3 {
-  margin: 2rem 0 0;
+  margin: 2rem 0 1rem;
 }
 
 .fullSide .formTemplate article .mainForm {
@@ -278,56 +272,30 @@ button:focus {
   transition: all 0.3s ease 0s;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    -webkit-animation: App-logo-spin infinite 20s linear;
-            animation: App-logo-spin infinite 20s linear;
+@media (min-width: 1024px) {
+  .fullSide .main-container {
+    max-width: 900px;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@-webkit-keyframes App-logo-spin {
-  from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+@media (max-width: 768px) {
+  * {
+    font-size: 14px;
   }
-  to {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+  .fullSide .formTemplate article .headerText {
+    margin: 1rem 1%;
   }
 }
 
-@keyframes App-logo-spin {
-  from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+@media (max-width: 425px) {
+  .fullSide .formTemplate .double-box {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
-  to {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+  .fullSide .formTemplate .double-box .inline-box {
+    width: 100%;
   }
 }
 /*# sourceMappingURL=App.css.map */

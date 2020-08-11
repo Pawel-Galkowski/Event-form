@@ -1,33 +1,79 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { eventForm } from "../../actions/forms";
-import Alert from "../layout/Alert";
+import React, {useState} from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {eventForm} from '../../actions/forms';
+import Alert from '../layout/Alert';
 
-const EventForm = ({ eventForm }) => {
-  const [formData, setFormData] = useState({});
+const EventForm = ({eventForm}) => {
+  const today = new Date().toISOString().substring(0, 10);
+  const eventName = 'Brainhub Event';
+  const eventSubject = 'Register confirmation';
+
+  const [formData, setFormData] = useState({
+    name: '',
+    nameError: '',
+    surname: '',
+    surnameError: '',
+    email: '',
+    emailError: '',
+    date: '',
+    dateError: '',
+    formName: eventName,
+    subject: eventSubject,
+  });
 
   const onChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({...formData, [e.target.name]: e.target.value});
+  };
+
+  const validate = () => {
+    let nameError = '';
+    let emailError = '';
+    let surnameError = '';
+    let dateError = '';
+
+    if (!formData.name || formData.name.length < 2) {
+      nameError = 'Name cannot be blank';
+    }
+
+    if (!formData.surname) {
+      surnameError = 'Surname cannot be blank';
+    }
+
+    // eslint-disable-next-line
+    if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formData.email)) {
+      emailError = 'Email is not valid';
+    }
+
+    if (!formData.date) {
+      dateError = 'Date cannot be blank';
+    }
+
+    if (nameError || surnameError || emailError || dateError) {
+      setFormData({
+        ...formData,
+        nameError,
+        surnameError,
+        emailError,
+        dateError,
+      });
+      return false;
+    }
+
+    return true;
   };
 
   const formSubmit = (e) => {
-    beforePush();
     e.preventDefault();
-    eventForm(formData);
-    setFormData({});
-    setTimeout(() => {
-      window.location.reload();
-    }, 3000);
+    const isValid = validate();
+    if (isValid) {
+      eventForm(formData);
+      setFormData({});
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
+    }
   };
-
-  const beforePush = () => {
-    setFormData({ ...formData, formName: eventName });
-    setFormData({ ...formData, subject: eventSubject });
-  };
-
-  const eventName = "Brainhub Event";
-  const eventSubject = "Register confirmation";
 
   return (
     <div className="fullSide">
@@ -36,12 +82,12 @@ const EventForm = ({ eventForm }) => {
           <article>
             <div className="headerText">
               <h3>{eventName}</h3>
-              <h1>Let's register to next event!</h1>
+              <h1>Let&apos;s register to next event!</h1>
             </div>
-            <form className="mainForm" onSubmit={formSubmit}>
+            <form data-testid="form" className="mainForm" onSubmit={formSubmit}>
               <div className="double-box">
                 <div className="inline-box">
-                  <label>First name</label>
+                  <label htmlFor="name">First name</label>
                   <input
                     type="text"
                     placeholder="Name"
@@ -49,9 +95,12 @@ const EventForm = ({ eventForm }) => {
                     onChange={onChange}
                     required
                   />
+                  <div className="wrong-data">
+                    {formData.nameError}
+                  </div>
                 </div>
                 <div className="inline-box">
-                  <label>Last name</label>
+                  <label htmlFor="surname">Last name</label>
                   <input
                     type="text"
                     placeholder="Surname"
@@ -59,9 +108,12 @@ const EventForm = ({ eventForm }) => {
                     onChange={onChange}
                     required
                   />
+                  <div className="wrong-data">
+                    {formData.surnameError}
+                  </div>
                 </div>
               </div>
-              <label>E-mail Adress</label>
+              <label htmlFor="email">E-mail Adress</label>
               <input
                 type="email"
                 placeholder="Email"
@@ -69,10 +121,29 @@ const EventForm = ({ eventForm }) => {
                 onChange={onChange}
                 required
               />
-              <label>Event date</label>
-              <input type="date" name="date" onChange={onChange} required />
+              <div className="wrong-data">
+                {formData.emailError}
+              </div>
+              <label htmlFor="date">Event date</label>
+              <input
+                data-testid="date"
+                type="date"
+                name="date"
+                min={today}
+                max="2099-12-31"
+                onChange={onChange}
+                required
+              />
+              <div className="wrong-data">
+                {formData.dateError}
+              </div>
               <Alert />
-              <input type="submit" value="Send" />
+              <input
+                id="submit"
+                data-testid="send"
+                type="submit"
+                value="Send"
+              />
             </form>
           </article>
         </section>
@@ -85,4 +156,4 @@ EventForm.propTypes = {
   eventForm: PropTypes.func.isRequired,
 };
 
-export default connect(null, { eventForm })(EventForm);
+export default connect(null, {eventForm})(EventForm);

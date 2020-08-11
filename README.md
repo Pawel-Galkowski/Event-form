@@ -1,6 +1,7 @@
 # Brainhub event form
 
-Application which are showing how to create form in node.js.
+Application which are showing how to create event form in node.js.
+Application saving data to database and sending a confirmation to user email.
 Front-end of appliacation is created in react-redux.
 
 ## Test application
@@ -17,6 +18,7 @@ If you don't have the email -> check SPAM folder.
     - Redux
     - HTML5
     - SASS
+    - MongoDB
 
 ## Installation
 To install appliaction you need to have a NPM(Node Package Manager). You can read about it on main NPM website.
@@ -27,11 +29,51 @@ After all you need to type in manager
 npm install
 ```
 
-Next, you need to create file ".env" in this file you need to save your gmail informations like:
+Next, you need to create file ".env" in this file you need to add some data:
+
+Database informations:
+```DATBASE
+DATABASE_LOGIN=[Your login]
+DATABASE_PASSWORD=[Your password]
+```
+
+To use mailing - add gmail informations like:
 ```GMAIL
 GMAIL_USER=[Your email]
 GMAIL_PASS=[Your password]
 ```
+
+## Lint
+
+To lint with eslint method use
+```
+npm run lint -- --fix
+npm run lint
+```
+
+## Tests
+Application has implemented test by using jest.
+To run test type:
+
+Run all tests
+```Test whole project
+npm run testAll
+```
+
+Test node
+```Test Node
+npm run test
+```
+
+Test Client
+```Test Client
+npm run testClient
+```
+
+## Database
+Screenshot from database with test persons.
+
+![Screenshot DB](https://i.ibb.co/v4LK67y/zrzutdb.png)"
 
 ## Usage
 To use application you need to type
@@ -39,3 +81,6 @@ To use application you need to type
 ```GIT
 npm start
 ```
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
