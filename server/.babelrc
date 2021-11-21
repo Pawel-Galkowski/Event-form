@@ -1,0 +1,23 @@
+{
+  "env": {
+    "test": {
+      "presets": [["@babel/env", { "targets": { "node": "current" } }]]
+    }
+  },
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current"
+        },
+        "modules": "auto"
+      }
+    ],
+      "@babel/preset-react"
+  ],
+  "plugins": [
+    "@babel/transform-runtime",
+    "@babel/syntax-dynamic-import"
+  ]
+}

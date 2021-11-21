@@ -4,9 +4,9 @@ import mongoose from 'mongoose';
 import path from 'path';
 import bodyParser from 'body-parser';
 import forms from './routes/forms.js';
+import db from './config/keys.js';
 import './middleware/EventFormMailer.js';
 import 'regenerator-runtime/runtime.js';
-import db from './config/keys.js';
 
 const app = express();
 
@@ -20,17 +20,18 @@ mongoose
     .then(() => console.log('MongoDB Connected'))
     .catch((err) => console.log(err));
 
-app.use('/forms', forms);
+
+app.use('/', forms);
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
+  app.use(express.static('../client/build'));
 
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 5000;
 
 const server = app.listen(port);
 
