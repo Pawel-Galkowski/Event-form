@@ -57,7 +57,7 @@
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.0",
     "babel-plugin-css-modules-transform": "^1.6.2",
-    "eslint": "^6.6.0",
+    "eslint": "^8.1.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-flowtype": "^8.0.3",
     "eslint-plugin-import": "^2.25.3",
