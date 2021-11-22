@@ -1,4 +1,4 @@
-# Brainhub event form
+# Event form
 
 Application which are showing how to create event form in node.js.
 Application saving data to database and sending a confirmation to user email.
