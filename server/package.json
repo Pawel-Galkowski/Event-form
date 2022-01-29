@@ -1,8 +1,7 @@
 {
-  "name": "my-webpack-project",
+  "name": "server",
   "main": "server.js",
   "version": "1.0.0",
-  "private": true,
   "type": "module",
   "scripts": {
     "start": "node server",
@@ -14,10 +13,8 @@
     "watch": "webpack --watch",
     "serve": "webpack serve"
   },
-  "description": "My webpack project",
   "author": "Pawel Galkowski",
   "dependencies": {
-    "concurrently": "^6.4.0",
     "debug": "^4.1.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
